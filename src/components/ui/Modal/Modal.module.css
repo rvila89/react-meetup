@@ -1,0 +1,52 @@
+.darkBG {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal {
+  width: 250px;
+  height: 110px;
+  background: white;
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.modalContent {
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.modalContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.continueBtn {
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 30px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: none;
+  color: #fff;
+  background: #2c0ac7;
+}
+
+.deleteBtn:hover {
+  transform: translateY(-5px);
+  background: #0d023d;
+}

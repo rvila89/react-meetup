@@ -1,8 +1,8 @@
 import React from 'react'
 import MeetupItem from '../../components/meetups/MeetupItem/MeetupItem'
-import './AllMeetupsPage.css'
+import classes from './AllMeetupsPage.module.css'
 import { useAppContext } from '../../context/AppContext'
-import { IMeetup } from '../../types'
+import { IMeetup } from '../../common/types'
 
 const AllMeetupsPage: React.FC = () => {
   const { meetups } = useAppContext()
@@ -11,7 +11,7 @@ const AllMeetupsPage: React.FC = () => {
   return (
     <section>
       <h1>All Meetups</h1>
-      <ul className='list'>
+      <ul className={classes.list}>
         {meetups.map((meetup: IMeetup) => (
           <MeetupItem
             key={meetup.id}

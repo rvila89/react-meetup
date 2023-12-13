@@ -1,6 +1,6 @@
-import './MeetupItem.css'
-import Card from '../../ui/Card'
-import { IMeetup } from '../../../types'
+import classes from './MeetupItem.module.css'
+import { Card } from '../../ui/Card'
+import { IMeetup } from '../../../common/types'
 
 const MeetupItem: React.FC<IMeetup> = ({
   title,
@@ -9,17 +9,17 @@ const MeetupItem: React.FC<IMeetup> = ({
   image,
 }) => {
   return (
-    <li className='item' data-test='meet-up-item'>
+    <li className={classes.item} data-test='meet-up-item'>
       <Card>
-        <div className='image'>
+        <div className={classes.image}>
           <img src={image} alt={title} />
         </div>
-        <div className='content'>
+        <div className={classes.content}>
           <h3>{title}</h3>
           <address>{address}</address>
           <p>{description}</p>
         </div>
-        <div className='actions'>
+        <div className={classes.actions}>
           <button>Add to favorites</button>
         </div>
       </Card>

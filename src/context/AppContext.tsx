@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
 import { createContext, useContext } from 'react'
-import { IContextType, IMeetup } from '../types'
-import { useFetch } from '../util-hooks/useFetch'
+import { IMeetup } from '../common/types'
+import { useFetch } from '../hooks/useFetch'
+import { IContextType } from './AppContext.types'
 
 const INITIAL_STATE = {
   meetups: [],
   setMeetups: () => {},
 }
 
-const AppContext = createContext<any>(INITIAL_STATE)
+const AppContext = createContext<IContextType>(INITIAL_STATE)
 
 const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [meetups, setMeetups] = useState<IMeetup[] | null>(null)
+  const [meetups, setMeetups] = useState<IMeetup[]>([])
   const { data } = useFetch({
     url: './data.json',
   })
@@ -22,7 +23,7 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <>
-      {meetups && (
+      {meetups.length && (
         <AppContext.Provider value={{ meetups, setMeetups }}>
           {children}
         </AppContext.Provider>

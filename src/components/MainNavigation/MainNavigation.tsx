@@ -1,10 +1,10 @@
-import './MainNavigation.css'
+import classes from './MainNavigation.module.css'
 import { Link } from 'react-router-dom'
 
 const MainNavigation: React.FC = () => {
   return (
-    <header className='header' data-test='navigation-header'>
-      <div className='logo'>React Meetups</div>
+    <header className={classes.header} data-test='navigation-header'>
+      <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
           <li>
@@ -16,7 +16,7 @@ const MainNavigation: React.FC = () => {
           </li>
           <li>
             <Link to='/favorites'>
-              My favorites <span className='badge'>{0}</span>
+              My favorites <span className={classes.badge}>{0}</span>
             </Link>
           </li>
         </ul>
