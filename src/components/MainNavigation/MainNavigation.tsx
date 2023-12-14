@@ -1,9 +1,18 @@
+import { useAppContext } from '../../context/AppContext'
+import { useAnimationHeader } from '../../hooks/useAnimationHeader'
 import classes from './MainNavigation.module.css'
 import { Link } from 'react-router-dom'
 
 const MainNavigation: React.FC = () => {
+  const { meetups } = useAppContext()
+  const favorites = meetups.filter((meetup) => meetup.isFavorite)
+  const { scrollDirection } = useAnimationHeader()
   return (
-    <header className={classes.header} data-test='navigation-header'>
+    <header
+      className={classes.header}
+      style={{ display: scrollDirection === 'down' ? 'none' : 'flex' }}
+      data-test='navigation-header'
+    >
       <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
@@ -16,7 +25,8 @@ const MainNavigation: React.FC = () => {
           </li>
           <li>
             <Link to='/favorites'>
-              My favorites <span className={classes.badge}>{0}</span>
+              My favorites{' '}
+              <span className={classes.badge}>{favorites.length}</span>
             </Link>
           </li>
         </ul>

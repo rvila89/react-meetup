@@ -35,6 +35,7 @@ const NewMeetupForm: React.FC = () => {
       address: data.address,
       image: data.image,
       description: data.description,
+      isFavorite: false,
     }
     setMeetups((prevMeetups) => [...prevMeetups, newMeetup])
   }
