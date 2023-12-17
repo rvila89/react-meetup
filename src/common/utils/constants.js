@@ -1,3 +1,3 @@
-const REQUIRED = 'Este campo es obligatorio'
+const REQUIRED = 'This field is required'
 
 export { REQUIRED }

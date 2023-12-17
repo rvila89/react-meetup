@@ -9,6 +9,7 @@ import classes from './NewMeetupForm.module.css'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Modal } from '../../ui/Modal'
+import { urlRegex } from '../../../common/utils/regex'
 
 const NewMeetupForm: React.FC = () => {
   // use react hook form to manage new meetup form
@@ -57,11 +58,22 @@ const NewMeetupForm: React.FC = () => {
           <div className={classes.control}>
             <label htmlFor='image'>Meetup Image</label>
             <input
-              {...register('image', { required: true })}
+              {...register('image', {
+                required: true,
+                pattern: {
+                  value: urlRegex,
+                  message: 'Incorrect URL',
+                },
+              })}
               id='image'
-              type='text'
             />
-            {errors.image && <ErrorText text={REQUIRED} />}
+            {errors.image?.type === 'required' ? (
+              <ErrorText text={REQUIRED} />
+            ) : (
+              errors.image?.type === 'pattern' && (
+                <ErrorText text={errors.image?.message} />
+              )
+            )}
           </div>
           <div className={classes.control}>
             <label htmlFor='address'>Address</label>

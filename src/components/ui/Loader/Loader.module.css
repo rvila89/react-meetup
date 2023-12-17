@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+}
+.ml-2 {
+  margin-left: 0.5rem
+}

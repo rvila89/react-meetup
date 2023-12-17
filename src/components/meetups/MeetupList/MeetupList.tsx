@@ -3,16 +3,21 @@ import { MeetupItem } from '../MeetupItem'
 import { IMeetupList } from './MeetupList.types'
 
 import classes from './MeetupList.module.css'
+import { useAppContext } from '../../../context/AppContext'
+import Loader from '../../ui/Loader/Loader'
 
 const MeetupList: React.FC<IMeetupList> = ({ meetups, title }) => {
+  const { isFirstLoading } = useAppContext()
   return (
     <section>
       <h1>{title}</h1>
-      <ul className={classes.list}>
-        {meetups.length === 0 ? (
-          <li>No meetups found.</li>
-        ) : (
-          meetups.map((meetup: IMeetup) => (
+      {isFirstLoading ? (
+        <Loader />
+      ) : meetups.length === 0 ? (
+        <p>No meetups found.</p>
+      ) : (
+        <ul className={classes.list}>
+          {meetups.map((meetup: IMeetup) => (
             <MeetupItem
               key={meetup.id}
               title={meetup.title}
@@ -22,9 +27,9 @@ const MeetupList: React.FC<IMeetupList> = ({ meetups, title }) => {
               id={meetup.id}
               isFavorite={meetup.isFavorite}
             />
-          ))
-        )}
-      </ul>
+          ))}
+        </ul>
+      )}
     </section>
   )
 }

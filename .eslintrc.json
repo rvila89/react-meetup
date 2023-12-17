@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "jest": true
+    "jest": true,
+    "jest/globals": true
   },
   "extends": [
     "eslint:recommended",
@@ -14,7 +15,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react"],
+  "plugins": ["@typescript-eslint", "react", "jest"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",

@@ -1,10 +1,31 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
 import NewMeetupForm from './NewMeetupForm'
 import { BrowserRouter } from 'react-router-dom'
 import user from '@testing-library/user-event'
-import AppProvider from '../../../context/AppContext'
+import { AppContext } from '../../../context/AppContext'
 import * as constants from '../../../common/utils/constants'
 import { act } from 'react-dom/test-utils'
+
+const customRender = (ui, setMeetupsMock) => {
+  const ProviderWrapper = ({ children }) => {
+    const value = {
+      meetups: [],
+      setMeetups: setMeetupsMock,
+    }
+    return (
+      <AppContext.Provider value={value}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </AppContext.Provider>
+    )
+  }
+  return render(ui, { wrapper: ProviderWrapper })
+}
+
+const mockedUsedNavigate = jest.fn()
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}))
 
 // Testing the NewMeetUpForm component using react-testing-library like Testing utility
 describe('Test NewMeetUpForm Component', () => {
@@ -29,10 +50,13 @@ describe('Test NewMeetUpForm Component', () => {
 
     expect(getAllByText(constants.REQUIRED).length).toBe(4)
   })
-  test('check open modal when user add correct fields and submit form', async () => {
-    const { getByText, getByRole } = render(<NewMeetupForm />, {
-      wrapper: BrowserRouter,
-    })
+  test('integration test. Add new meetup. Check open modal, check update context, check navigate to home page', async () => {
+    const setMeetupsMock = jest.fn()
+    const { getByText, getByRole } = customRender(
+      <NewMeetupForm />,
+      setMeetupsMock
+    )
+
     await act(async () => {
       const meetupTitle = getByRole('textbox', { name: /Meetup Title/i })
       user.type(meetupTitle, 'White House')
@@ -52,11 +76,22 @@ describe('Test NewMeetUpForm Component', () => {
         'https://lh3.googleusercontent.com/p/AF1QipNp5xLlWB6XdmXHiiUDmPacAso7CLvdcLy6Jp4o=s1360-w1360-h1020'
       )
     })
+
     await act(async () => {
       const submitButton = getByRole('button', { name: /Add Meetup/i })
       fireEvent.submit(submitButton)
     })
+
     expect(window.crypto.randomUUID).toHaveBeenCalledTimes(1)
     expect(getByText(/Meetup añadido correctamente/i)).toBeInTheDocument()
+    expect(setMeetupsMock).toHaveBeenCalledTimes(1)
+
+    await act(async () => {
+      const continueButton = getByRole('button', { name: /Continuar/i })
+      fireEvent.click(continueButton)
+    })
+
+    expect(mockedUsedNavigate).toBeCalled()
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('/')
   })
 })
