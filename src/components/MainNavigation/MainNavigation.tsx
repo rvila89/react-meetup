@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 const MainNavigation: React.FC = () => {
   const { meetups } = useAppContext()
   const favorites = meetups.filter((meetup) => meetup.isFavorite)
+  // use custom hook to manage header animation
   const { scrollDirection } = useAnimationHeader()
   return (
     <header

@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { Modal } from '../../ui/Modal'
 
 const NewMeetupForm: React.FC = () => {
+  // use react hook form to manage new meetup form
   const {
     register,
     handleSubmit,
@@ -46,17 +47,29 @@ const NewMeetupForm: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={classes.control}>
             <label htmlFor='title'>Meetup Title</label>
-            <input {...register('title', { required: true })} />
+            <input
+              {...register('title', { required: true })}
+              id='title'
+              type='text'
+            />
             {errors.title && <ErrorText text={REQUIRED} />}
           </div>
           <div className={classes.control}>
-            <label htmlFor='title'>Meetup Image</label>
-            <input {...register('image', { required: true })} />
+            <label htmlFor='image'>Meetup Image</label>
+            <input
+              {...register('image', { required: true })}
+              id='image'
+              type='text'
+            />
             {errors.image && <ErrorText text={REQUIRED} />}
           </div>
           <div className={classes.control}>
             <label htmlFor='address'>Address</label>
-            <input {...register('address', { required: true })} />
+            <input
+              {...register('address', { required: true })}
+              id='address'
+              type='text'
+            />
             {errors.address && <ErrorText text={REQUIRED} />}
           </div>
           <div className={classes.control}>
@@ -64,6 +77,8 @@ const NewMeetupForm: React.FC = () => {
             <textarea
               {...register('description', { required: true })}
               rows={5}
+              id='description'
+              name='description'
             ></textarea>
             {errors.description && <ErrorText text={REQUIRED} />}
           </div>

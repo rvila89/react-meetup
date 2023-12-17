@@ -6,6 +6,7 @@ export const useFetch = ({ url }: { url: string }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
+    // update hook to use async/await
     const fetchData = async () => {
       try {
         const response = await fetch(url)

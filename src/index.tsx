@@ -5,11 +5,13 @@ import AppProvider from './context/AppContext'
 
 import './index.css'
 
+// React 17 is installed. I deactivate the eslint notification for this line that warns me that the render function is deprecated since react 18
+/* eslint-disable react/no-deprecated */
 ReactDOM.render(
-  <BrowserRouter>
-    <AppProvider>
+  <AppProvider>
+    <BrowserRouter>
       <App />
-    </AppProvider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </AppProvider>,
   document.getElementById('root') as HTMLElement
 )

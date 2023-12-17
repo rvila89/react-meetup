@@ -1,30 +1,32 @@
-/* eslint-disable testing-library/await-async-query */
-/* eslint-disable testing-library/no-debugging-utils */
-import { shallow, mount } from "enzyme";
-import App from "./App";
-import MainNavigation from "./components/layout/MainNavigation";
-import Layout from "./components/layout/Layout";
+import '@testing-library/jest-dom'
+import { shallow } from 'enzyme'
+import App from './App'
+import { MainNavigation } from './components/MainNavigation'
+import { Route } from 'react-router-dom'
 
-/**
- * Factory funcion to create a ShallowWrapper for the App component
- * @function setup
- * @returns {ShallowWrapper}
- */
-const setup = () => shallow(<App />);
-const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test]='${val}'`);
+// Testing the App component using enzyme like Testing utility
+describe('Test App Component', () => {
+  let AppComponent
 
-test("renders App without crashing", () => {
-  const wrapper = setup();
-  //console.log(wrapper.debug());
-  expect(wrapper.exists()).toBe(true);
-});
+  beforeEach(() => {
+    AppComponent = shallow(<App />)
+  })
 
-test("renders the navigation component", () => {
-  const wrapper = setup();
-  expect(wrapper.find(MainNavigation).length).toBe(1);
-});
+  test('renders App without crashing', () => {
+    expect(AppComponent.exists()).toBe(true)
+    expect(AppComponent.find('[data-test="app"]').length).toBe(1)
+  })
 
-test("renders the Layout component", () => {
-  const wrapper = setup();
-  expect(wrapper.find(Layout).length).toBe(1);
-});
+  test('renders the navigation component', () => {
+    expect(AppComponent.find(MainNavigation).exists()).toBe(true)
+  })
+
+  test('check the app have 4 exact routes', () => {
+    const AppRoutes = AppComponent.find(Route)
+    expect(AppRoutes.length).toBe(4)
+    expect(AppRoutes.find('Route[path="/"]').exists()).toBe(true)
+    expect(AppRoutes.find('Route[path="/new-meetup"]').exists()).toBe(true)
+    expect(AppRoutes.find('Route[path="/favorites"]').exists()).toBe(true)
+    expect(AppRoutes.find('Route[path="*"]').exists()).toBe(true)
+  })
+})
