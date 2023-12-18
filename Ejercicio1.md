@@ -1,6 +1,6 @@
 ### Ejercicio 1
 
-1 . Que problemas detecas en la operación y razona la respuesta.
+1 . Que problemas detectas en la operación y razona la respuesta.
 
 En la operación detecto varios problemas que pueden tener un impacto en un futuro y requerir la módificación de la lógica:
 
@@ -10,8 +10,8 @@ En la operación detecto varios problemas que pueden tener un impacto en un futu
 
 2 . Propón una solución alternativa (también en pseudocódigo del mismo estilo) que corrija los problemas de la operación getTotal de RegisteredUser que has detectado en la pregunta anterior. Realiza todos los cambios que consideres necesarios en cualquiera de las clases del modelo del enunciado
 
-La solución alternativa para que en un futuro el impacto sea menor, surge al en encontrar una solución al problema 3 (Dependencia estructura de clases)
-Para evitar esta fuerta dependencia en la operación getTotal se puede plantear desacoplar la lógica del calculo del precio de un servicio de la estructura específica de clases, para que si en un futuro añadimos nuevos tipos de servicios o nuevos contenidos de multimedia facilitar su incorporación y no se modifique la operación getTotal
+La solución alternativa para que en un futuro el impacto sea menor, surge al pensar una solución al problema 3 (Dependencia estructura de clases)
+Para evitar esta fuerta dependencia en la operación getTotal, se puede plantear desacoplar la lógica del calculo del precio de un servicio de la estructura específica de clases, para que si en un futuro queremos añadir nuevos tipos de servicios o nuevos contenidos de multimedia facilitemos su incorporación y no tengamos que modificar la operación getTotal
 
 Para poder desacoplar ese cálculo añado una nueva clase PriceCalculation, que será la responsable de toda esa lógica. Esta nueva clase tendrá una relación con la RegisteredUser de composición, implicando que un objeto de la clase RegisteredUser es responsable de la creación y destrucción de objetos de la clase PriceCalculation y que la existencia de esta última esta vinculada directamente a la existencia de la primera. El usuario registrado tiene accesible el importe total de los servicios contratados
 
