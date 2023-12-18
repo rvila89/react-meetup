@@ -1,5 +1,5 @@
 > [!NOTE]  
-> REACT MEET UP
+> **REACT MEET UP**
 > Prueba técnica Frontend - Axpe Consulting
 > Nombre: Roger Vilà Mateo
 > Email: roger.vila.mateo@gmail.com
@@ -28,11 +28,11 @@ A partir de un proyecto basado en una aplicación de 'meetup' que se encuentra e
 
 > [!IMPORTANT]  
 > Las versiones de node y npm utilizadas para el desarrollo del proyecto han sido:
-> node: npm:
+> **node**: v18.19.0 **npm**: 10.2.3
 >
 > Para poder ejecutar el proyecto sigue los siguientes pasos
 >
-> 1. clonar el repositorio y situarnos dentro el proyecto
+> 1. clonar el repositorio y situarnos dentro el proyecto:
 >    git clone https://github.com/rvila89/react-meetup.git
 >    cd react-meetup
 > 2. ejecutar 'npm install' para instalar todas las dependencias
