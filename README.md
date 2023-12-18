@@ -4,6 +4,12 @@
 > Nombre: Roger Vilà Mateo
 > Email: roger.vila.mateo@gmail.com
 
+# Ejercicio 1
+
+El ejercicio 1 está resuelto en el siguiente enlace [Ejercicio 1](./Ejercicio1.md)
+
+# Ejercicio 2
+
 ### Contexto
 
 A partir de un proyecto basado en una aplicación de 'meetup' que se encuentra en un estado bastante inicial, se requiere terminar el desarrollo a partir de los requisitos y condiciones propuestas. La aplicación consta de 3 vistas a desarrollar:
@@ -21,9 +27,14 @@ A partir de un proyecto basado en una aplicación de 'meetup' que se encuentra e
    que el programador que inició el proyecto, empezó a hacer.
 
 > [!IMPORTANT]  
+> Las versiones de node y npm utilizadas para el desarrollo del proyecto han sido:
+> node: npm:
+>
 > Para poder ejecutar el proyecto sigue los siguientes pasos
 >
-> 1. clonar el repositorio i situarnos dentro el proyecto
+> 1. clonar el repositorio y situarnos dentro el proyecto
+>    git clone https://github.com/rvila89/react-meetup.git
+>    cd react-meetup
 > 2. ejecutar 'npm install' para instalar todas las dependencias
 > 3. ejecutar 'npm start' para inicializar la aplicación
 >
