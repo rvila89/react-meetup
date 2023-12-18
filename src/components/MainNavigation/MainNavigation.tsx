@@ -11,7 +11,13 @@ const MainNavigation: React.FC = () => {
   return (
     <header
       className={classes.header}
-      style={{ display: scrollDirection === 'down' ? 'none' : 'flex' }}
+      // style={{ display: scrollDirection === 'down' ? 'none' : 'flex' }}
+      style={{
+        transform: `${
+          scrollDirection === 'up' ? 'translateY(0)' : 'translateY(-100%)'
+        }`,
+        transition: 'transform 0.5s ease-in-out',
+      }}
       data-test='navigation-header'
     >
       <div className={classes.logo}>React Meetups</div>
